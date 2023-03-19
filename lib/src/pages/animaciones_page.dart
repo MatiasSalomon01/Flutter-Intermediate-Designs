@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class AnimacionesPage extends StatelessWidget {
   const AnimacionesPage({super.key});
@@ -33,7 +34,16 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
     controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 4000));
 
-    rotacion = Tween(begin: 0.0, end: 2.0).animate(controller);
+    rotacion = Tween(begin: 0.0, end: 2 * math.pi).animate(controller);
+
+    controller.addListener(() {
+      print('Status: ${controller.status}');
+      if (controller.status == AnimationStatus.completed) {
+        controller.reverse();
+      } /*else if (controller.status == AnimationStatus.dismissed) {
+        controller.forward();
+      }*/
+    });
     super.initState();
   }
 
