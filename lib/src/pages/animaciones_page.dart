@@ -28,6 +28,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
   late AnimationController controller;
 
   late Animation<double> rotacion;
+  late Animation<double> opacidad;
 
   @override
   void initState() {
@@ -37,10 +38,12 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
     rotacion = Tween(begin: 0.0, end: 2 * math.pi)
         .animate(CurvedAnimation(parent: controller, curve: Curves.easeOut));
 
+    opacidad = Tween(begin: 0.1, end: 1.0).animate(controller);
+
     controller.addListener(() {
       print('Status: ${controller.status}');
       if (controller.status == AnimationStatus.completed) {
-        controller.reset();
+        //controller.reset();
       } /*else if (controller.status == AnimationStatus.dismissed) {
         controller.forward();
       }*/
@@ -59,9 +62,16 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
     controller.forward();
     return AnimatedBuilder(
       animation: controller,
+      child: _Rectangulo(),
       builder: (context, child) {
         // print(rotacion.value);
-        return Transform.rotate(angle: rotacion.value, child: _Rectangulo());
+        return Transform.rotate(
+          angle: rotacion.value,
+          child: Opacity(
+            opacity: opacidad.value,
+            child: child,
+          ),
+        );
       },
     );
   }
