@@ -93,6 +93,7 @@ class _MiRadialProgress extends CustomPainter {
     // Arco
     final paintArco = new Paint()
       ..strokeWidth = grosorPrimario
+      ..strokeCap = StrokeCap.round
       ..color = colorPrimario
       ..style = PaintingStyle.stroke;
 
