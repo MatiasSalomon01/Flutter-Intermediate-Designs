@@ -1,4 +1,5 @@
-import 'package:designs/src/pages/headers_page.dart';
+import 'package:designs/src/pages/animaciones_page.dart';
+// import 'package:designs/src/pages/headers_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Intermediate Designs',
-        home: HeadersPage());
+        // home: HeadersPage());
+        home: AnimacionesPage());
   }
 }
