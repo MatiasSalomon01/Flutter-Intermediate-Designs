@@ -1,5 +1,6 @@
 // import 'package:designs/src/challenges/cuadrado_animado_page.dart';
-import 'package:designs/src/pages/circular_progress_page.dart';
+import 'package:designs/src/labs/circular_progress_page.dart';
+import 'package:designs/src/pages/graficas_circulares_page.dart';
 // import 'package:designs/src/pages/animaciones_page.dart';
 // import 'package:designs/src/pages/headers_page.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Intermediate Designs',
         // home: HeadersPage());
-        home: CircularProgressPage());
+        home: GraficasCircularesPage());
   }
 }

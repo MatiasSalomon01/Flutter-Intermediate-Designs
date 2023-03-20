@@ -44,7 +44,7 @@ class _CircularProgressPageState extends State<CircularProgressPage>
           backgroundColor: Colors.pink,
           onPressed: () {
             porcentaje = nuevoPorcentaje;
-            nuevoPorcentaje += 10;
+            nuevoPorcentaje += 100;
             if (nuevoPorcentaje > 100) {
               nuevoPorcentaje = 0;
               porcentaje = 0;
