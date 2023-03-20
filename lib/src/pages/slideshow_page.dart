@@ -1,15 +1,20 @@
+import 'package:designs/src/models/slider_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class SlideShowPage extends StatelessWidget {
   const SlideShowPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          children: [Expanded(child: _Slides()), _Dots()],
+    return ChangeNotifierProvider(
+      create: (context) => SliderModel(),
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [Expanded(child: _Slides()), _Dots()],
+          ),
         ),
       ),
     );
@@ -40,11 +45,15 @@ class _Dot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final pageViewIndex = Provider.of<SliderModel>(context).currentPage;
+
     return Container(
       width: 12,
       height: 12,
       margin: EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
+      decoration: BoxDecoration(
+          color: pageViewIndex == index ? Colors.blue : Colors.grey,
+          shape: BoxShape.circle),
     );
   }
 }
@@ -62,7 +71,10 @@ class _SlidesState extends State<_Slides> {
   @override
   void initState() {
     pageViewController.addListener(() {
-      print('Pagina Actual: ${pageViewController.page}');
+      //print('Pagina Actual: ${pageViewController.page}');
+      Provider.of<SliderModel>(context, listen: false).currentPage =
+          pageViewController.page!;
+      //Actualizar SliderModel
     });
     super.initState();
   }
@@ -82,8 +94,8 @@ class _SlidesState extends State<_Slides> {
           _Slide('assets/svgs/slide-1.svg'),
           _Slide('assets/svgs/slide-2.svg'),
           _Slide('assets/svgs/slide-3.svg'),
-          _Slide('assets/svgs/slide-4.svg'),
-          _Slide('assets/svgs/slide-5.svg'),
+          // _Slide('assets/svgs/slide-4.svg'),
+          // _Slide('assets/svgs/slide-5.svg'),
         ],
       ),
     );
