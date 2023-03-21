@@ -1,6 +1,4 @@
-import 'package:designs/src/models/slider_model.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class SlideShow extends StatelessWidget {
@@ -17,19 +15,41 @@ class SlideShow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => SliderModel(),
+      create: (context) => _SlideShowModel(),
       child: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              if (puntosArriba)
-                _Dots(slides.length, colorPrimario, colorSecundario),
-              Expanded(child: _Slides(slides)),
-              if (!puntosArriba)
-                _Dots(slides.length, colorPrimario, colorSecundario),
-            ],
-          ),
+        child: Builder(
+          builder: (context) {
+            Provider.of<_SlideShowModel>(context).colorPrimario = colorPrimario;
+            Provider.of<_SlideShowModel>(context).colorSecundario =
+                colorSecundario;
+            return _CrearEstructuraSlideShow(
+                puntosArriba: puntosArriba, slides: slides);
+          },
         ),
+      ),
+    );
+  }
+}
+
+class _CrearEstructuraSlideShow extends StatelessWidget {
+  const _CrearEstructuraSlideShow({
+    super.key,
+    required this.puntosArriba,
+    required this.slides,
+  });
+
+  final bool puntosArriba;
+  final List<Widget> slides;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: [
+          if (puntosArriba) _Dots(slides.length),
+          Expanded(child: _Slides(slides)),
+          if (!puntosArriba) _Dots(slides.length),
+        ],
       ),
     );
   }
@@ -37,10 +57,8 @@ class SlideShow extends StatelessWidget {
 
 class _Dots extends StatelessWidget {
   final int totalDots;
-  final Color colorPrimario;
-  final Color colorSecundario;
 
-  const _Dots(this.totalDots, this.colorPrimario, this.colorSecundario);
+  const _Dots(this.totalDots);
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +68,7 @@ class _Dots extends StatelessWidget {
       // color: Colors.red,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(
-            totalDots, (index) => _Dot(index, colorPrimario, colorSecundario)),
+        children: List.generate(totalDots, (index) => _Dot(index)),
       ),
     );
   }
@@ -59,14 +76,12 @@ class _Dots extends StatelessWidget {
 
 class _Dot extends StatelessWidget {
   final int index;
-  final Color colorPrimario;
-  final Color colorSecundario;
 
-  _Dot(this.index, this.colorPrimario, this.colorSecundario);
+  _Dot(this.index);
 
   @override
   Widget build(BuildContext context) {
-    final pageViewIndex = Provider.of<SliderModel>(context).currentPage;
+    final slideShowModel = Provider.of<_SlideShowModel>(context);
 
     return AnimatedContainer(
       duration: Duration(milliseconds: 200),
@@ -75,9 +90,10 @@ class _Dot extends StatelessWidget {
         height: 12,
         margin: EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
-            color: (pageViewIndex >= index - 0.5 && pageViewIndex < index + 0.5)
-                ? colorPrimario
-                : colorSecundario,
+            color: (slideShowModel.currentPage >= index - 0.5 &&
+                    slideShowModel.currentPage < index + 0.5)
+                ? slideShowModel.colorPrimario
+                : slideShowModel.colorSecundario,
             shape: BoxShape.circle),
       ),
     );
@@ -101,7 +117,7 @@ class _SlidesState extends State<_Slides> {
   @override
   void initState() {
     pageViewController.addListener(() {
-      Provider.of<SliderModel>(context, listen: false).currentPage =
+      Provider.of<_SlideShowModel>(context, listen: false).currentPage =
           pageViewController.page!;
     });
     super.initState();
@@ -136,5 +152,32 @@ class _Slide extends StatelessWidget {
       padding: EdgeInsets.all(30),
       child: slide,
     );
+  }
+}
+
+class _SlideShowModel extends ChangeNotifier {
+  double _currentPage = 0;
+  Color _colorPrimario = Colors.blue;
+  Color _colorSecundario = Colors.grey;
+
+  double get currentPage => _currentPage;
+
+  set currentPage(double pagina) {
+    _currentPage = pagina;
+    notifyListeners();
+  }
+
+  Color get colorPrimario => _colorPrimario;
+
+  set colorPrimario(Color color) {
+    _colorPrimario = color;
+    notifyListeners();
+  }
+
+  Color get colorSecundario => _colorSecundario;
+
+  set colorSecundario(Color color) {
+    _colorSecundario = color;
+    notifyListeners();
   }
 }
