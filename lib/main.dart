@@ -1,6 +1,7 @@
 // import 'package:designs/src/challenges/cuadrado_animado_page.dart';
-import 'package:designs/src/labs/circular_progress_page.dart';
+// import 'package:designs/src/labs/circular_progress_page.dart';
 // import 'package:designs/src/pages/graficas_circulares_page.dart';
+// import 'package:designs/src/labs/slideshow_page.dart';
 import 'package:designs/src/pages/slideshow_page.dart';
 // import 'package:designs/src/pages/animaciones_page.dart';
 // import 'package:designs/src/pages/headers_page.dart';
@@ -17,6 +18,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Intermediate Designs',
         // home: HeadersPage());
-        home: SlideShowPage());
+        home: SlidesShowPage());
   }
 }
