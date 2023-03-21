@@ -1,16 +1,19 @@
 import 'package:designs/src/models/slider_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class SlideShow extends StatelessWidget {
+  final List<Widget> slides;
+  SlideShow({required this.slides});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => SliderModel(),
       child: Center(
         child: Column(
-          children: [Expanded(child: _Slides()), _Dots()],
+          children: [Expanded(child: _Slides(slides)), _Dots()],
         ),
       ),
     );
@@ -62,6 +65,10 @@ class _Dot extends StatelessWidget {
 //SvgPicture.asset('assets/svgs/slide-1.svg'),
 
 class _Slides extends StatefulWidget {
+  final List<Widget> slides;
+
+  _Slides(this.slides);
+
   @override
   State<_Slides> createState() => _SlidesState();
 }
@@ -72,10 +79,8 @@ class _SlidesState extends State<_Slides> {
   @override
   void initState() {
     pageViewController.addListener(() {
-      //print('Pagina Actual: ${pageViewController.page}');
       Provider.of<SliderModel>(context, listen: false).currentPage =
           pageViewController.page!;
-      //Actualizar SliderModel
     });
     super.initState();
   }
@@ -91,21 +96,22 @@ class _SlidesState extends State<_Slides> {
     return Container(
       child: PageView(
         controller: pageViewController,
-        children: [
-          _Slide('assets/svgs/slide-1.svg'),
-          _Slide('assets/svgs/slide-2.svg'),
-          _Slide('assets/svgs/slide-3.svg'),
-          // _Slide('assets/svgs/slide-4.svg'),
-          // _Slide('assets/svgs/slide-5.svg'),
-        ],
+        children: widget.slides.map((slide) => _Slide(slide)).toList(),
+        // children: [
+        //   _Slide('assets/svgs/slide-1.svg'),
+        //   _Slide('assets/svgs/slide-2.svg'),
+        //   _Slide('assets/svgs/slide-3.svg'),
+        //   // _Slide('assets/svgs/slide-4.svg'),
+        //   // _Slide('assets/svgs/slide-5.svg'),
+        // ],
       ),
     );
   }
 }
 
 class _Slide extends StatelessWidget {
-  final String svg;
-  _Slide(this.svg);
+  final Widget slide;
+  _Slide(this.slide);
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +119,7 @@ class _Slide extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       padding: EdgeInsets.all(30),
-      child: SvgPicture.asset(svg),
+      child: slide,
     );
   }
 }
