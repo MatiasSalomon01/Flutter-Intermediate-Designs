@@ -3,15 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class PinterestPage extends StatelessWidget {
-  const PinterestPage({Key? key}) : super(key: key);
+  const PinterestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: PinterestMenu(),
-      ),
+      // body: PinterestMenu(),
+      // body: PinterestGrid(),
+      body: Stack(children: [PinterestGrid(), _PinterestMenuLocation()]),
     );
+  }
+}
+
+class _PinterestMenuLocation extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final widthPantalla = MediaQuery.of(context).size.width;
+    return Positioned(
+        bottom: 30,
+        child: Container(
+          width: widthPantalla,
+          child: Align(
+            child: PinterestMenu(),
+          ),
+        ));
   }
 }
 
