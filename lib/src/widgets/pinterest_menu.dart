@@ -11,30 +11,43 @@ class PinterestMenu extends StatelessWidget {
   final List<PinterestButton> items = [
     PinterestButton(
         onPressed: () => print('Icon pie_chart'), icon: Icons.pie_chart),
+    PinterestButton(onPressed: () => print('Icon search'), icon: Icons.search),
     PinterestButton(
-        onPressed: () => print('Icon pie_chart'), icon: Icons.search),
-    PinterestButton(
-        onPressed: () => print('Icon pie_chart'),
+        onPressed: () => print('Icon notifications_active'),
         icon: Icons.notifications_active),
     PinterestButton(
-        onPressed: () => print('Icon pie_chart'),
+        onPressed: () => print('Icon supervised_user_circle'),
         icon: Icons.supervised_user_circle)
   ];
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        width: 250,
-        height: 60,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(100)),
-          boxShadow: [
-            BoxShadow(color: Colors.black38, blurRadius: 10, spreadRadius: -5)
-          ],
-        ),
+      child: _PinterestMenuBackground(
         child: _MenuItems(items),
+      ),
+    );
+  }
+}
+
+class _PinterestMenuBackground extends StatelessWidget {
+  final Widget child;
+
+  _PinterestMenuBackground({
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 250,
+      height: 60,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(100)),
+        boxShadow: [
+          BoxShadow(color: Colors.black38, blurRadius: 10, spreadRadius: -5)
+        ],
       ),
     );
   }
@@ -63,8 +76,17 @@ class _PinterestMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Icon(item.icon),
+    return GestureDetector(
+      onTap: () {
+        item.onPressed();
+      },
+      child: Container(
+        child: Icon(
+          item.icon,
+          size: 25,
+          color: Colors.blueGrey,
+        ),
+      ),
     );
   }
 }
