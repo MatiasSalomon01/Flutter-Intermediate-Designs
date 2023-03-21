@@ -47,13 +47,18 @@ class _Dot extends StatelessWidget {
   Widget build(BuildContext context) {
     final pageViewIndex = Provider.of<SliderModel>(context).currentPage;
 
-    return Container(
-      width: 12,
-      height: 12,
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(
-          color: pageViewIndex == index ? Colors.blue : Colors.grey,
-          shape: BoxShape.circle),
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 200),
+      child: Container(
+        width: 12,
+        height: 12,
+        margin: EdgeInsets.symmetric(horizontal: 5),
+        decoration: BoxDecoration(
+            color: (pageViewIndex >= index - 0.5 && pageViewIndex < index + 0.5)
+                ? Colors.blue
+                : Colors.grey,
+            shape: BoxShape.circle),
+      ),
     );
   }
 }
