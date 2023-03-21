@@ -13,7 +13,7 @@ class SlideShow extends StatelessWidget {
       create: (context) => SliderModel(),
       child: Center(
         child: Column(
-          children: [Expanded(child: _Slides(slides)), _Dots()],
+          children: [Expanded(child: _Slides(slides)), _Dots(slides.length)],
         ),
       ),
     );
@@ -21,7 +21,9 @@ class SlideShow extends StatelessWidget {
 }
 
 class _Dots extends StatelessWidget {
-  const _Dots({super.key});
+  final int totalDots;
+
+  const _Dots(this.totalDots);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class _Dots extends StatelessWidget {
       // color: Colors.red,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [_Dot(0), _Dot(1), _Dot(2)],
+        children: List.generate(totalDots, (index) => _Dot(index)),
       ),
     );
   }
@@ -97,13 +99,6 @@ class _SlidesState extends State<_Slides> {
       child: PageView(
         controller: pageViewController,
         children: widget.slides.map((slide) => _Slide(slide)).toList(),
-        // children: [
-        //   _Slide('assets/svgs/slide-1.svg'),
-        //   _Slide('assets/svgs/slide-2.svg'),
-        //   _Slide('assets/svgs/slide-3.svg'),
-        //   // _Slide('assets/svgs/slide-4.svg'),
-        //   // _Slide('assets/svgs/slide-5.svg'),
-        // ],
       ),
     );
   }
