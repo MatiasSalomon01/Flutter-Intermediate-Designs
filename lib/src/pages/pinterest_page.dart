@@ -1,16 +1,20 @@
 import 'package:designs/src/widgets/pinterest_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:provider/provider.dart';
 
 class PinterestPage extends StatelessWidget {
   const PinterestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // body: PinterestMenu(),
-      // body: PinterestGrid(),
-      body: Stack(children: [PinterestGrid(), _PinterestMenuLocation()]),
+    return ChangeNotifierProvider(
+      create: (context) => _MenuModel(),
+      child: Scaffold(
+        // body: PinterestMenu(),
+        // body: PinterestGrid(),
+        body: Stack(children: [PinterestGrid(), _PinterestMenuLocation()]),
+      ),
     );
   }
 }
@@ -19,12 +23,13 @@ class _PinterestMenuLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final widthPantalla = MediaQuery.of(context).size.width;
+    final mostrar = Provider.of<_MenuModel>(context).mostrar;
     return Positioned(
         bottom: 30,
         child: Container(
           width: widthPantalla,
           child: Align(
-            child: PinterestMenu(),
+            child: PinterestMenu(mostrar: mostrar),
           ),
         ));
   }
@@ -45,8 +50,10 @@ class _PinterestGridState extends State<PinterestGrid> {
     controller.addListener(() {
       // print('ScollListener: ${controller.offset}');
       if (controller.offset > scrollAnterior) {
+        Provider.of<_MenuModel>(context, listen: false).mostrar = false;
         print('Ocultar Menu');
       } else {
+        Provider.of<_MenuModel>(context, listen: false).mostrar = true;
         print('Mostrar Menu');
       }
       scrollAnterior = controller.offset;
@@ -94,5 +101,16 @@ class _PinterestItem extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _MenuModel extends ChangeNotifier {
+  bool _mostrar = true;
+
+  bool get mostrar => _mostrar;
+
+  set mostrar(bool value) {
+    _mostrar = value;
+    notifyListeners();
   }
 }

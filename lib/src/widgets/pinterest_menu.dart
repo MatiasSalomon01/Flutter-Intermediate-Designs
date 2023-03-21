@@ -9,6 +9,9 @@ class PinterestButton {
 }
 
 class PinterestMenu extends StatelessWidget {
+  final bool mostrar;
+  PinterestMenu({this.mostrar = true});
+
   final List<PinterestButton> items = [
     PinterestButton(
         onPressed: () => print('Icon pie_chart'), icon: Icons.pie_chart),
@@ -25,8 +28,10 @@ class PinterestMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => _MenuModel(),
-      child: _PinterestMenuBackground(
-        child: _MenuItems(items),
+      child: AnimatedOpacity(
+        duration: Duration(milliseconds: 250),
+        opacity: mostrar ? 1 : 0,
+        child: _PinterestMenuBackground(child: _MenuItems(items)),
       ),
     );
   }
