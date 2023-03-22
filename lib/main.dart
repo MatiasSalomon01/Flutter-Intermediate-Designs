@@ -3,6 +3,7 @@
 // import 'package:designs/src/pages/graficas_circulares_page.dart';
 // import 'package:designs/src/labs/slideshow_page.dart';
 import 'package:designs/src/pages/emergency_page.dart';
+import 'package:designs/src/pages/sliver_list_page.dart';
 // import 'package:designs/src/pages/pinterest_page.dart';
 // import 'package:designs/src/pages/slideshow_page.dart';
 // import 'package:designs/src/pages/animaciones_page.dart';
@@ -20,6 +21,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Intermediate Designs',
         // home: HeadersPage());
-        home: EmergencyPage());
+        home: SliverListPage());
   }
 }
