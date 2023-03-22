@@ -9,6 +9,7 @@ import 'package:designs/src/pages/pinterest_page.dart';
 import 'package:designs/src/pages/slideshow_page.dart';
 import 'package:designs/src/pages/animaciones_page.dart';
 import 'package:designs/src/pages/headers_page.dart';
+import 'package:designs/src/pages/twitter_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       // home: SlidesShowPage()
       // home: EmergencyPage(),
       // home: SliverListPage(),
-      home: AnimateDoPage(),
+      home: TwitterPage(),
     );
   }
 }
