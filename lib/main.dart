@@ -12,9 +12,16 @@ import 'package:designs/src/pages/slideshow_page.dart';
 import 'package:designs/src/pages/animaciones_page.dart';
 import 'package:designs/src/pages/headers_page.dart';
 import 'package:designs/src/pages/twitter_page.dart';
+import 'package:designs/src/theme/theme_changer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(
+      ChangeNotifierProvider(
+        create: (context) => ThemeChanger(),
+        child: MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

@@ -1,8 +1,10 @@
 import 'package:designs/src/pages/emergency_page.dart';
 import 'package:designs/src/routes/routes.dart';
+import 'package:designs/src/theme/theme_changer.dart';
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class LauncherPage extends StatelessWidget {
   const LauncherPage({Key? key}) : super(key: key);
@@ -22,6 +24,7 @@ class LauncherPage extends StatelessWidget {
 class _MenuPrincipal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context);
     return Drawer(
       child: Container(
         child: Column(
@@ -46,16 +49,22 @@ class _MenuPrincipal extends StatelessWidget {
               leading: Icon(Icons.lightbulb_outline, color: Colors.blue),
               title: Text('Modo Oscuro'),
               trailing: Switch.adaptive(
-                value: true,
-                onChanged: (value) {},
+                value: appTheme.darkTheme,
+                onChanged: (value) => appTheme.darkTheme = value,
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.add_to_home_screen, color: Colors.blue),
-              title: Text('Modo Custom'),
-              trailing: Switch.adaptive(
-                value: true,
-                onChanged: (value) {},
+            SafeArea(
+              bottom: true,
+              right: false,
+              left: false,
+              top: false,
+              child: ListTile(
+                leading: Icon(Icons.add_to_home_screen, color: Colors.blue),
+                title: Text('Modo Custom'),
+                trailing: Switch.adaptive(
+                  value: appTheme.customTheme,
+                  onChanged: (value) => appTheme.customTheme = value,
+                ),
               ),
             )
           ],
