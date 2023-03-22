@@ -1,5 +1,6 @@
 import 'package:designs/src/challenges/cuadrado_animado_page.dart';
 import 'package:designs/src/labs/circular_progress_page.dart';
+import 'package:designs/src/pages/animate_do_pages.dart';
 import 'package:designs/src/pages/graficas_circulares_page.dart';
 import 'package:designs/src/labs/slideshow_page.dart';
 import 'package:designs/src/pages/emergency_page.dart';
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
       // home: PinterestPage()
       // home: SlidesShowPage()
       // home: EmergencyPage(),
-      home: SliverListPage(),
+      // home: SliverListPage(),
+      home: AnimateDoPage(),
     );
   }
 }
