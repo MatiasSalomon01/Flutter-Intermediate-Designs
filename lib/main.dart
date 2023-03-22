@@ -30,8 +30,7 @@ class MyApp extends StatelessWidget {
       // home: SlidesShowPage()
       // home: EmergencyPage(),
       // home: SliverListPage(),
-      // home: AnimateDoPage(),
-      home: NavegacionPage(),
+      home: AnimateDoPage(),
     );
   }
 }
