@@ -8,7 +8,42 @@ class SliverListPage extends StatelessWidget {
     return Scaffold(
       // body: _ListaTareas(),
       // body: _Titulo(),
-      body: _MainScroll(),
+      body: Stack(
+        children: [
+          _MainScroll(),
+          Positioned(bottom: -10, right: 0, child: _BotonNewList()),
+        ],
+      ),
+    );
+  }
+}
+
+class _BotonNewList extends StatelessWidget {
+  // const _BotonNewList({super.key});
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return ButtonTheme(
+      minWidth: size.width * 0.9,
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.symmetric(horizontal: 70, vertical: 30),
+            backgroundColor: Color(
+              0xffed6762,
+            ),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(50)))),
+        child: Text(
+          'CREATE NEW LIST',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 3,
+          ),
+        ),
+      ),
     );
   }
 }
