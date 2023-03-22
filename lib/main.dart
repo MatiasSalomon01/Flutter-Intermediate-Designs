@@ -20,7 +20,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Intermediate Designs',
       theme: ThemeData.dark(),
-      home: LauncherPage(),
+      home: OrientationBuilder(
+        builder: (context, orientation) {
+          print(orientation);
+          return LauncherPage();
+        },
+      ),
     );
   }
 }
