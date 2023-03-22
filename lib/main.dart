@@ -1,3 +1,4 @@
+import 'package:designs/src/Shoe%20App/pages/zapato_page.dart';
 import 'package:designs/src/pages/launcher_page.dart';
 import 'package:designs/src/theme/theme_changer.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Intermediate Designs',
-      theme: ThemeData.dark(),
-      home: LauncherPage(),
+      // theme: ThemeData.dark(),
+      // home: LauncherPage(),
+      home: ZapatoPage(),
     );
   }
 }
