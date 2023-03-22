@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:designs/src/widgets/boton_gordo.dart';
 import 'package:designs/src/widgets/headers.dart';
 import 'package:flutter/material.dart';
@@ -45,14 +46,17 @@ class EmergencyPage extends StatelessWidget {
     ];
 
     List<Widget> itemMap = items
-        .map((e) => BotonGordo(
-            icon: e.icon,
-            texto: e.texto,
-            color1: e.color1,
-            color2: e.color2,
-            onPress: () {
-              print('hola');
-            }))
+        .map((e) => FadeInLeft(
+              duration: Duration(milliseconds: 250),
+              child: BotonGordo(
+                  icon: e.icon,
+                  texto: e.texto,
+                  color1: e.color1,
+                  color2: e.color2,
+                  onPress: () {
+                    print('hola');
+                  }),
+            ))
         .toList();
 
     return Scaffold(
