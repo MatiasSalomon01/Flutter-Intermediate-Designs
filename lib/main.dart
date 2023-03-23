@@ -1,3 +1,4 @@
+import 'package:designs/src/Shoe%20App/pages/zapato_desc_page.dart';
 import 'package:designs/src/Shoe%20App/pages/zapato_page.dart';
 import 'package:designs/src/pages/launcher_page.dart';
 import 'package:designs/src/theme/theme_changer.dart';
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Intermediate Designs',
       // theme: ThemeData.dark(),
       // home: LauncherPage(),
-      home: ZapatoPage(),
+      // home: ZapatoPage(),
+      home: ZapatoDescripcionPage(),
     );
   }
 }
