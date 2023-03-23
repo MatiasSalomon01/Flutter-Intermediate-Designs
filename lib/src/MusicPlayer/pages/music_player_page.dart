@@ -8,13 +8,53 @@ class MusicPlayerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        children: [CustomAppBar(), ImagesDIscoDuracion()],
+        children: [
+          CustomAppBar(),
+          ImagenDiscoDuracion(),
+          TituloPlay(),
+        ],
       ),
     );
   }
 }
 
-class ImagesDIscoDuracion extends StatelessWidget {
+class TituloPlay extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 40),
+      padding: EdgeInsets.symmetric(horizontal: 40),
+      child: Row(
+        children: [
+          Column(
+            children: [
+              Text(
+                'Far away',
+                style: TextStyle(
+                    fontSize: 30, color: Colors.white.withOpacity(0.8)),
+              ),
+              Text(
+                '- Breaking Benjamin',
+                style: TextStyle(
+                    fontSize: 15, color: Colors.white.withOpacity(0.5)),
+              )
+            ],
+          ),
+          Spacer(),
+          FloatingActionButton(
+            elevation: 0,
+            highlightElevation: 0,
+            backgroundColor: Color(0xfff8cb51),
+            child: Icon(Icons.play_arrow),
+            onPressed: () {},
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ImagenDiscoDuracion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
