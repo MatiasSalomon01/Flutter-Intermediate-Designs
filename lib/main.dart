@@ -1,6 +1,7 @@
 import 'package:designs/src/MusicPlayer/models/audio_player_model.dart';
 import 'package:designs/src/MusicPlayer/pages/music_player_page.dart';
 import 'package:designs/src/MusicPlayer/theme/theme.dart';
+import 'package:designs/src/PageTransition/pages/pagina1.dart';
 import 'package:designs/src/Shoe%20App/models/zapato_model.dart';
 import 'package:designs/src/Shoe%20App/pages/zapato_desc_page.dart';
 import 'package:designs/src/Shoe%20App/pages/zapato_page.dart';
@@ -45,8 +46,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Intermediate Designs',
       // home: LauncherPage(),
       // home: ZapatoPage(),
-      home: MusicPlayerPage(),
-      theme: miTema,
+      // home: MusicPlayerPage(),
+      home: Pagina1(),
+      // theme: miTema,
     );
   }
 }
