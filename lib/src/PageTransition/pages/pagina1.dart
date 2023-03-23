@@ -40,9 +40,13 @@ class Pagina1 extends StatelessWidget {
         //   scale: Tween(begin: 0.0, end: 1.0).animate(curvedAnimation),
         // );
 
-        return RotationTransition(
+        // return RotationTransition(
+        //     child: child,
+        //     turns: Tween(begin: 0.0, end: 1.0).animate(curvedAnimation));
+
+        return FadeTransition(
             child: child,
-            turns: Tween(begin: 0.0, end: 1.0).animate(curvedAnimation));
+            opacity: Tween(begin: 0.0, end: 1.0).animate(curvedAnimation));
       },
     );
   }
