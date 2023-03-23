@@ -18,9 +18,55 @@ class ZapatoSizePreview extends StatelessWidget {
           children: [
             // Zapato con su dsombra
             _ZapatoConSombra(),
+            _ZapatoTallas(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _ZapatoTallas extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          _TallaZapatoCaja(7),
+          _TallaZapatoCaja(7.5),
+          _TallaZapatoCaja(8),
+          _TallaZapatoCaja(8.5),
+          _TallaZapatoCaja(9),
+          _TallaZapatoCaja(9.5),
+        ],
+      ),
+    );
+  }
+}
+
+class _TallaZapatoCaja extends StatelessWidget {
+  final double numero;
+  _TallaZapatoCaja(this.numero);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      child: Text(
+        '${numero.toString().replaceAll('.0', '')}',
+        style: TextStyle(
+            color: Color(0xffF1a23a),
+            fontSize: 16,
+            fontWeight: FontWeight.bold),
+      ),
+      width: 45,
+      height: 45,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [BoxShadow()]),
     );
   }
 }
@@ -32,10 +78,12 @@ class _ZapatoConSombra extends StatelessWidget {
       padding: const EdgeInsets.all(50),
       child: Stack(
         children: [
-          Positioned(bottom: 20, right: 0, child: _ZapatoSombra()),
-          Image(
-            image: AssetImage('assets/images_shoe_app/azul.png'),
-          )
+          Positioned(
+            bottom: 20,
+            right: 0,
+            child: _ZapatoSombra(),
+          ),
+          Image(image: AssetImage('assets/images_shoe_app/azul.png')),
         ],
       ),
     );
