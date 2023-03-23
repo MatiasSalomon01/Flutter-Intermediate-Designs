@@ -18,11 +18,48 @@ class ImagesDIscoDuracion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      margin: EdgeInsets.only(top: 80),
       child: Row(
         children: [
-          //Disco
-          ImagesDisco()
-          //Barra de Progreso
+          ImagesDisco(),
+          SizedBox(width: 40),
+          BarraProgreso(),
+          SizedBox(width: 20),
+        ],
+      ),
+    );
+  }
+}
+
+class BarraProgreso extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final estilo = TextStyle(color: Colors.white.withOpacity(0.4));
+    return Container(
+      child: Column(
+        children: [
+          Text('00:00', style: estilo),
+          SizedBox(height: 10),
+          Stack(
+            children: [
+              Container(
+                width: 3,
+                height: 230,
+                color: Colors.white.withOpacity(0.1),
+              ),
+              Positioned(
+                bottom: 0,
+                child: Container(
+                  width: 3,
+                  height: 100,
+                  color: Colors.white.withOpacity(0.8),
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: 10),
+          Text('00:00', style: estilo),
         ],
       ),
     );
@@ -40,6 +77,16 @@ class ImagesDisco extends StatelessWidget {
       padding: EdgeInsets.all(20),
       width: 250,
       height: 250,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(200),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          colors: [
+            Color(0xff484750),
+            Color(0xff1e1c24),
+          ],
+        ),
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(200),
         child: Stack(
@@ -62,16 +109,6 @@ class ImagesDisco extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
               ),
             )
-          ],
-        ),
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(200),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          colors: [
-            Color(0xff484750),
-            Color(0xff1e1c24),
           ],
         ),
       ),
