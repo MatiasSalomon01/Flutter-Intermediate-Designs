@@ -11,6 +11,7 @@ class ZapatoPage extends StatelessWidget {
       body: Column(
         children: [
           CustomAppBar(texto: 'For you'),
+          SizedBox(height: 20),
           ZapatoSizePreview(),
         ],
       ),

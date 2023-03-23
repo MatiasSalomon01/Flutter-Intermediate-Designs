@@ -11,7 +11,7 @@ class ZapatoSizePreview extends StatelessWidget {
         width: double.infinity,
         height: 430,
         decoration: BoxDecoration(
-          color: Color(0xfff8d468),
+          color: Color(0xffffcf53),
           borderRadius: BorderRadius.circular(50),
         ),
         child: Column(
