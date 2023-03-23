@@ -36,10 +36,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Intermediate Designs',
-      // theme: ThemeData.dark(),
       // home: LauncherPage(),
       home: ZapatoPage(),
-      // home: ZapatoDescripcionPage(),
     );
   }
 }
