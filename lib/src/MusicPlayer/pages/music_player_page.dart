@@ -1,6 +1,9 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:designs/src/MusicPlayer/helpers/helpers.dart';
+import 'package:designs/src/MusicPlayer/models/audio_player_model.dart';
 import 'package:designs/src/MusicPlayer/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MusicPlayerPage extends StatelessWidget {
   const MusicPlayerPage({Key? key}) : super(key: key);
@@ -128,12 +131,16 @@ class _TituloPlayState extends State<TituloPlay>
               progress: controller,
             ),
             onPressed: () {
+              final audioPlayerModel =
+                  Provider.of<AudioPlayerModel>(context, listen: false);
               if (isPlaying) {
                 controller.reverse();
+                audioPlayerModel.controller.stop();
                 isPlaying = false;
               } else {
                 controller.forward();
                 isPlaying = true;
+                audioPlayerModel.controller.repeat();
               }
             },
           ),
@@ -151,7 +158,7 @@ class ImagenDiscoDuracion extends StatelessWidget {
       margin: EdgeInsets.only(top: 80),
       child: Row(
         children: [
-          ImagesDisco(),
+          ImagenDisco(),
           SizedBox(width: 40),
           BarraProgreso(),
           SizedBox(width: 20),
@@ -195,13 +202,10 @@ class BarraProgreso extends StatelessWidget {
   }
 }
 
-class ImagesDisco extends StatelessWidget {
-  const ImagesDisco({
-    super.key,
-  });
-
+class ImagenDisco extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final audioPlayerModel = Provider.of<AudioPlayerModel>(context);
     return Container(
       padding: EdgeInsets.all(20),
       width: 250,
@@ -221,7 +225,15 @@ class ImagesDisco extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Image(image: AssetImage('assets/images_music_player/aurora.jpg')),
+            SpinPerfect(
+                duration: Duration(milliseconds: 10000),
+                manualTrigger: true,
+                infinite: true,
+                controller: (controller) =>
+                    audioPlayerModel.controller = controller,
+                child: Image(
+                    image:
+                        AssetImage('assets/images_music_player/aurora.jpg'))),
             Container(
               width: 25,
               height: 25,

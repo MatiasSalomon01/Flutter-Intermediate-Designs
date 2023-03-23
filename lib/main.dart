@@ -1,3 +1,4 @@
+import 'package:designs/src/MusicPlayer/models/audio_player_model.dart';
 import 'package:designs/src/MusicPlayer/pages/music_player_page.dart';
 import 'package:designs/src/MusicPlayer/theme/theme.dart';
 import 'package:designs/src/Shoe%20App/models/zapato_model.dart';
@@ -21,6 +22,10 @@ class AppState extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => ZapatoModel(),
+          child: MyApp(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AudioPlayerModel(),
           child: MyApp(),
         ),
       ],
