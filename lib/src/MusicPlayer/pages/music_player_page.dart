@@ -1,3 +1,4 @@
+import 'package:designs/src/MusicPlayer/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class MusicPlayerPage extends StatelessWidget {
@@ -5,9 +6,11 @@ class MusicPlayerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('MusicPlayerPage'),
+    return Scaffold(
+      body: Column(
+        children: [
+          CustomAppBar(),
+        ],
       ),
     );
   }
