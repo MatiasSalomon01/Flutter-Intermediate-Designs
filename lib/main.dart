@@ -1,3 +1,5 @@
+import 'package:designs/src/MusicPlayer/pages/music_player_page.dart';
+import 'package:designs/src/MusicPlayer/theme/theme.dart';
 import 'package:designs/src/Shoe%20App/models/zapato_model.dart';
 import 'package:designs/src/Shoe%20App/pages/zapato_desc_page.dart';
 import 'package:designs/src/Shoe%20App/pages/zapato_page.dart';
@@ -37,7 +39,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Intermediate Designs',
       // home: LauncherPage(),
-      home: ZapatoPage(),
+      // home: ZapatoPage(),
+      home: MusicPlayerPage(),
+      theme: miTema,
     );
   }
 }
