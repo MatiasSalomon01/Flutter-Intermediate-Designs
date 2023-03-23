@@ -1,3 +1,4 @@
+import 'package:designs/src/Shoe%20App/pages/zapato_desc_page.dart';
 import 'package:flutter/material.dart';
 
 class ZapatoSizePreview extends StatelessWidget {
@@ -6,26 +7,38 @@ class ZapatoSizePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: fullScreen ? 0 : 30, vertical: fullScreen ? 0 : 5),
-      child: Container(
-        width: double.infinity,
-        height: fullScreen ? 420 : 430,
-        decoration: BoxDecoration(
-          color: Color(0xffffcf53),
-          borderRadius: !fullScreen
-              ? BorderRadius.circular(50)
-              : BorderRadius.only(
-                  bottomLeft: Radius.circular(50),
-                  bottomRight: Radius.circular(50)),
-        ),
-        child: Column(
-          children: [
-            // Zapato con su dsombra
-            _ZapatoConSombra(),
-            if (!fullScreen) _ZapatoTallas(),
-          ],
+    return GestureDetector(
+      onTap: () {
+        if (!fullScreen) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ZapatoDescripcionPage(),
+            ),
+          );
+        }
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: fullScreen ? 0 : 30, vertical: fullScreen ? 0 : 5),
+        child: Container(
+          width: double.infinity,
+          height: fullScreen ? 420 : 430,
+          decoration: BoxDecoration(
+            color: Color(0xffffcf53),
+            borderRadius: !fullScreen
+                ? BorderRadius.circular(50)
+                : BorderRadius.only(
+                    bottomLeft: Radius.circular(50),
+                    bottomRight: Radius.circular(50)),
+          ),
+          child: Column(
+            children: [
+              // Zapato con su dsombra
+              _ZapatoConSombra(),
+              if (!fullScreen) _ZapatoTallas(),
+            ],
+          ),
         ),
       ),
     );

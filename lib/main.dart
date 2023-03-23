@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Intermediate Designs',
       // theme: ThemeData.dark(),
       // home: LauncherPage(),
-      // home: ZapatoPage(),
-      home: ZapatoDescripcionPage(),
+      home: ZapatoPage(),
+      // home: ZapatoDescripcionPage(),
     );
   }
 }
