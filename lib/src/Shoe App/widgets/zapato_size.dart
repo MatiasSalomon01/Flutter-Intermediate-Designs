@@ -26,14 +26,40 @@ class ZapatoSizePreview extends StatelessWidget {
 }
 
 class _ZapatoConSombra extends StatelessWidget {
-  const _ZapatoConSombra({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(50),
       child: Stack(
-        children: [Image(image: AssetImage('assets/images_shoe_app/azul.png'))],
+        children: [
+          Positioned(bottom: 20, right: 0, child: _ZapatoSombra()),
+          Image(
+            image: AssetImage('assets/images_shoe_app/azul.png'),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _ZapatoSombra extends StatelessWidget {
+  const _ZapatoSombra({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Transform.rotate(
+      angle: -0.5,
+      child: Container(
+        width: 230,
+        height: 100,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
+          boxShadow: [
+            BoxShadow(color: Color(0xffeaa14e), blurRadius: 40),
+          ],
+        ),
       ),
     );
   }
