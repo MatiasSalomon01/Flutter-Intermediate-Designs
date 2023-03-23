@@ -46,27 +46,51 @@ class _ZapatoTallas extends StatelessWidget {
   }
 }
 
-class _TallaZapatoCaja extends StatelessWidget {
+class _TallaZapatoCaja extends StatefulWidget {
   final double numero;
   _TallaZapatoCaja(this.numero);
 
   @override
+  State<_TallaZapatoCaja> createState() => _TallaZapatoCajaState();
+}
+
+class _TallaZapatoCajaState extends State<_TallaZapatoCaja> {
+  bool isActive = false;
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Text(
-        '${numero.toString().replaceAll('.0', '')}',
-        style: TextStyle(
-            color: Color(0xffF1a23a),
-            fontSize: 16,
-            fontWeight: FontWeight.bold),
-      ),
-      width: 45,
-      height: 45,
-      decoration: BoxDecoration(
-          color: Colors.white,
+    Color inactiveColor = Colors.white;
+    Color activeColor = Color(0xfff1a23a);
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isActive = !isActive;
+        });
+      },
+      child: Container(
+        alignment: Alignment.center,
+        child: Text(
+          '${widget.numero.toString().replaceAll('.0', '')}',
+          style: TextStyle(
+              color: isActive == true ? inactiveColor : Color(0xffF1a23a),
+              fontSize: 16,
+              fontWeight: FontWeight.bold),
+        ),
+        width: 45,
+        height: 45,
+        decoration: BoxDecoration(
+          color: isActive ? activeColor : inactiveColor,
           borderRadius: BorderRadius.circular(10),
-          boxShadow: [BoxShadow()]),
+          boxShadow: [
+            isActive
+                ? BoxShadow(
+                    color: Color(0xfff1a23a),
+                    blurRadius: 10,
+                    offset: Offset(0, 10))
+                : BoxShadow()
+          ],
+        ),
+      ),
     );
   }
 }
