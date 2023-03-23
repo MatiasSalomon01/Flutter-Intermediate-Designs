@@ -1,5 +1,7 @@
+import 'package:designs/src/Shoe%20App/models/zapato_model.dart';
 import 'package:designs/src/Shoe%20App/pages/zapato_desc_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ZapatoSizePreview extends StatelessWidget {
   final bool fullScreen;
@@ -117,6 +119,7 @@ class _TallaZapatoCajaState extends State<_TallaZapatoCaja> {
 class _ZapatoConSombra extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final zapatoModel = Provider.of<ZapatoModel>(context);
     return Padding(
       padding: const EdgeInsets.all(50),
       child: Stack(
@@ -126,7 +129,7 @@ class _ZapatoConSombra extends StatelessWidget {
             right: 0,
             child: _ZapatoSombra(),
           ),
-          Image(image: AssetImage('assets/images_shoe_app/azul.png')),
+          Image(image: AssetImage(zapatoModel.assetImage)),
         ],
       ),
     );
